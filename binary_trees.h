@@ -1,5 +1,5 @@
 #ifndef _BINARY_TREES_
-#define _BINARY_TREES
+#define _BINARY_TREES_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -81,4 +81,4 @@ int *heap_to_sorted_array(heap_t *heap, size_t *size);
 void binary_tree_print(const binary_tree_t *);
 
 
-#endif /* _BINARY_TREES */
+#endif /* _BINARY_TREES_ */
