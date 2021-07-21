@@ -1,4 +1,5 @@
 #include "binary_trees.h"
+#include "limits.h"
 
 /**
  * bsort_recursive_check - Checks if a binary tree is a valid binary search tree.
