@@ -2,7 +2,7 @@
 #include "limits.h"
 
 /**
- * bsort_recursive_check - Checks if a binary tree is a valid binary search tree.
+ * bsort_recursive_check - Checks if is a valid binary search tree.
  * @tree: A pointer to the root node of the tree to check.
  * @lo: The value of the smallest node visited thus far.
  * @hi: The value of the largest node visited this far.
@@ -22,7 +22,7 @@ int bsort_recursive_check(const binary_tree_t *tree, int lo, int hi)
 }
 
 /**
- * binary_tree_is_bst - Checks if a binary tree is a valid binary search tree.
+ * binary_tree_is_bst - Checks if is a valid binary search tree.
  * @tree: A pointer to the root node of the tree to check.
  *
  * Return: 1 if tree is a valid BST, and 0 otherwise
