@@ -1,24 +1,42 @@
 #include "binary_trees.h"
 
 /**
- * avl_insert - insert a new node in a Binary Search Tree
- * @tree: a pointer to the first node
+ * balancer - insert a new node in a Binary Search Tree
+ * @node: a pointer to the first node
  * @value: int value
  *
- * Return: If no common ancestor was found return NULL
+ * Return: void
  */
-avl_t *avl_insert(avl_t **tree, int value)
+void balancer(avl_t **node, int value)
 {
-	avl_t *node;
+	int balancer;
 
-	if (*tree == NULL)
+	balancer = binary_tree_balance(*node);
+
+	if (balancer > 1 && value < (*node)->left->n)
 	{
-		*tree = binary_tree_node(NULL, value);
-		return (*tree);
+		*node = binary_tree_rotate_right(*node);
+		return;
+	}
+	if (balancer < -1 && value > (*node)->right->n)
+	{
+		*node = binary_tree_rotate_left(*node);
+		return;
 	}
 
-	node = avl_recu(tree, value);
-	return (node);
+	if (balancer > 1 && value > (*node)->left->n)
+	{
+		(*node)->left = binary_tree_rotate_left((*node)->left);
+		*node = binary_tree_rotate_right(*node);
+		return;
+	}
+
+	if (balancer < -1 && value < (*node)->right->n)
+	{
+		(*node)->right = binary_tree_rotate_right((*node)->right);
+		*node = binary_tree_rotate_left(*node);
+		return;
+	}
 }
 
 /**
@@ -70,40 +88,22 @@ avl_t *avl_recu(avl_t **tree, int value)
 }
 
 /**
- * balancer - insert a new node in a Binary Search Tree
- * @node: a pointer to the first node
+ * avl_insert - insert a new node in a Binary Search Tree
+ * @tree: a pointer to the first node
  * @value: int value
  *
- * Return: void
+ * Return: If no common ancestor was found return NULL
  */
-void balancer(avl_t **node, int value)
+avl_t *avl_insert(avl_t **tree, int value)
 {
-	int balancer;
+	avl_t *node;
 
-	balancer = binary_tree_balance(*node);
-
-	if (balancer > 1 && value < (*node)->left->n)
+	if (*tree == NULL)
 	{
-		*node = binary_tree_rotate_right(*node);
-		return;
-	}
-	if (balancer < -1 && value > (*node)->right->n)
-	{
-		*node = binary_tree_rotate_left(*node);
-		return;
+		*tree = binary_tree_node(NULL, value);
+		return (*tree);
 	}
 
-	if (balancer > 1 && value > (*node)->left->n)
-	{
-		(*node)->left = binary_tree_rotate_left((*node)->left);
-		*node = binary_tree_rotate_right(*node);
-		return;
-	}
-
-	if (balancer < -1 && value < (*node)->right->n)
-	{
-		(*node)->right = binary_tree_rotate_right((*node)->right);
-		*node = binary_tree_rotate_left(*node);
-		return;
-	}
+	node = avl_recu(tree, value);
+	return (node);
 }
